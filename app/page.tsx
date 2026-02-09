@@ -40,30 +40,6 @@ export default function HomePage() {
   });
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Electron APIの初期化チェック
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.electronAPI) {
-      // 音楽フォルダ選択イベントのリスナー
-      window.electronAPI.onMusicFolderSelected((path: string) => {
-        setMusicFolder(path);
-        console.log('Music folder selected:', path);
-      });
-    }
-  }, []);
-
-  const handleSelectMusicFolder = async () => {
-    if (typeof window !== 'undefined' && window.electronAPI) {
-      try {
-        const path = await window.electronAPI.selectMusicFolder();
-        if (path) {
-          setMusicFolder(path);
-        }
-      } catch (error) {
-        console.error('Error selecting music folder:', error);
-      }
-    }
-  };
-
   const handlePlayPause = () => {
     playPause();
   };
@@ -155,7 +131,6 @@ export default function HomePage() {
               setCurrentView(view);
               setIsMobileSidebarOpen(false);
             }}
-            onSelectMusicFolder={handleSelectMusicFolder}
             musicFolder={musicFolder}
           />
         </div>
