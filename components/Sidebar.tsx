@@ -20,7 +20,7 @@ import { useMusicStore } from '@/lib/store';
 interface SidebarProps {
   currentView: string;
   onViewChange: (view: string) => void;
-  onSelectMusicFolder: () => void;
+  onSelectMusicFolder?: () => void;
   musicFolder: string | null;
 }
 
